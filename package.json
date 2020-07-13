@@ -1,10 +1,13 @@
 {
-  "name": "counter",
+  "name": "@gitdig/counter",
   "version": "1.0.0",
   "description": "hits counter &amp; thumbup &amp; rating components for static websites",
   "author": "gitdigg",
   "license": "MIT",
-  "repository": "gitdigg/counter",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gitdigg/counter.git"
+  },
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.js",
@@ -57,5 +60,12 @@
     "axios": "^0.19.2",
     "human-number": "^1.0.5",
     "svgtofont": "^2.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/gitdigg/counter/issues"
+  },
+  "homepage": "https://github.com/gitdigg/counter#readme",
+  "directories": {
+    "example": "example"
   }
 }
