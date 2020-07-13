@@ -8,19 +8,40 @@
 
 ```bash
 npm install --save counter
+//
+yarn add counter
 ```
 
 ## Usage
 
+### dev hits service 
+
+````bash
+$: docker run liujianping/hits:latest server http 
+````
+
+### usage
+
 ```jsx
 import React, { Component } from 'react'
 
-import MyComponent from 'counter'
-import 'counter/dist/index.css'
+import {Counter, Thumbup} from 'counter'
 
 class Example extends Component {
   render() {
-    return <MyComponent />
+    return (
+      <div>
+      Hit: <Counter hit baseURL="http://localhost:8080" />
+      <br />
+      Session: <Counter session baseURL="http://localhost:8080" />
+      <br />
+      User: <Counter user baseURL="http://localhost:8080" />
+      <br />
+      Thumbup: <Thumbup baseURL="http://localhost:8080" />
+      <br />
+      </div>
+    )
+    <MyComponent />
   }
 }
 ```

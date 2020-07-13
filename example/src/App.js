@@ -1,10 +1,15 @@
 import React from 'react'
 
-import { ExampleComponent } from 'counter'
-import 'counter/dist/index.css'
+import { Counter, Thumbup } from 'counter'
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+  return (
+    <div>
+      <Counter hit baseURL="http://localhost:8080" />
+      <br />
+      <Thumbup baseURL="http://localhost:8080" />
+    </div>
+  )
 }
 
 export default App
