@@ -54,12 +54,8 @@
     "dist"
   ],
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.29",
-    "@fortawesome/free-solid-svg-icons": "^5.13.1",
-    "@fortawesome/react-fontawesome": "^0.1.11",
     "axios": "^0.19.2",
-    "human-number": "^1.0.5",
-    "svgtofont": "^2.0.0"
+    "human-number": "^1.0.5"
   },
   "bugs": {
     "url": "https://github.com/gitdigg/counter/issues"
