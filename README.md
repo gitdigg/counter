@@ -7,20 +7,20 @@
 ## Install
 
 ```bash
-npm install --save counter
+npm install --save @gitdig/counter
 //
-yarn add counter
+yarn add @gitdig/counter
 ```
 
 ## Usage
 
-### dev hits service 
+### backend service
 
 ````bash
 $: docker run liujianping/hits:latest server http 
 ````
 
-### usage
+### react usage
 
 ```jsx
 import React, { Component } from 'react'
