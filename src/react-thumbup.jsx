@@ -55,7 +55,7 @@ export class Thumbup extends Component {
         const { thumbs, thumbed } = this.state.data;
         const { className } = this.props;
         if (!this.state.got) {
-            return <div className={className}></div>
+            return (<div className={className}></div>)
         }
         return (
             <div onClick={this.onThumbup} className={className} style={{ cursor: 'pointer' }}>

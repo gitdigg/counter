@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>插件测试</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+</head>
+
+<body>
+    <div class="container mt-4">
+        <div class="content">
+            <h1>插件测试/点击计数/会话计数/用户计数/点赞计数</h1>
+        </div>
+        <hr />
+        <div class="tag">点击:<span id='hit'></span></div>
+        <hr />
+        <div class="tag">会话:<span id='session'></span></div>
+        <hr />
+        <div class="tag">用户:<span id='user'></span></div>
+        <hr />
+        <div id='thumbup'></div>
+        <hr />
+        <div class="notification is-info">点击计数/会话计数/用户计数，请依次测试，同时测试 SQLite 内嵌数据库会发生并发写失败。</div>
+    </div>
+    <script src="dist/counter.js" charset="utf-8"></script>
+    <script defer type="text/javascript">
+        const cnt = counter.New("http://localhost:8080")
+        cnt.Hits({ container: 'hit', url: 'https://github.com/gitdigg/counter/hits', className: 'is-size-7' })
+        // cnt.Sessions({ container: 'session', url: 'https://github.com/gitdigg/counter/sessions', className: 'is-size-7' })
+        // cnt.Users({ container: 'user', url: 'https://github.com/gitdigg/counter/users', className: 'is-size-7' })
+        cnt.Thumbup({ container: 'thumbup', url: 'https://github.com/gitdigg/counter/thumbup', className: 'tag is-success' })
+    </script>
+</body>
+
+</html>
