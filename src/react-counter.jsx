@@ -27,7 +27,7 @@ export class Counter extends Component {
         const { readonly, url, initHits, initSsns, initUids } = this.props;
         if (readonly) {
             let persist = localStorage.getItem("_hits_p")
-            this.api.post("/v1/hits.Counter/Get", {
+            this.api.post("/v1/hits.Counter/HitGet", {
                 url: url,
                 initHits: initHits === null ? 0 : initHits,
                 initSsns: initSsns === null ? 0 : initSsns,
@@ -61,9 +61,9 @@ export class Counter extends Component {
     render() {
         const { got } = this.state;
         const { hits, ssns, uids } = this.state.data;
-        const { hit, session, user, className } = this.props;
+        const { hit, session, user } = this.props;
         return (
-            <span className={className}>
+            <>
                 {
                     got && hit && hits
                 }
@@ -73,7 +73,7 @@ export class Counter extends Component {
                 {
                     got && user && uids
                 }
-            </span>
+            </>
         )
     }
 }

@@ -10,27 +10,79 @@
 
 <body>
     <div class="container mt-4">
+        <h1 class="title">插件测试/点击计数/会话计数/用户计数/点赞计数</h1>
+        <hr />
+        <h2 class="subtitle"><strong>开发环境</strong></h2>
+        <div class="notification is-primary is-light">$: docker run -d liujianping/hits:latest server http</div>
+        <hr />
+        <h2 class="subtitle"><strong>方法一</strong></h2>
         <div class="content">
-            <h1>插件测试/点击计数/会话计数/用户计数/点赞计数</h1>
+            <textarea class="is-size-6" cols="120" rows="16">
+
+            <div class="tag">点击:<span id='hit'></span></div>
+            <div class="tag">只读:<span id='hitRd'></span></div>
+            <div class="tag">会话:<span id='session'></span></div>
+            <div class="tag">用户:<span id='user'></span></div>
+            <div  class="tag is-success" id='thumbup'></div>
+            <script src="dist/counter.min.js" charset="utf-8"></script>
+            <script defer type="text/javascript">
+                const cnt = counter.New("http://localhost:8080")
+                cnt.Hits({ container: 'hit', url: 'https://github.com/gitdigg/counter/hits' })
+                cnt.Hits({ container: 'hitRd', url: 'https://github.com/gitdigg/counter/hitsRead', readonly: true })
+                cnt.Sessions({ container: 'session', url: 'https://github.com/gitdigg/counter/sessions' })
+                cnt.Users({ container: 'user', url: 'https://github.com/gitdigg/counter/users' })
+                cnt.Thumbup({ container: 'thumbup', url: 'https://github.com/gitdigg/counter/thumbup', className: 'tag is-success' })                    
+            </script>
+            </textarea>
         </div>
         <hr />
-        <div class="tag">点击:<span id='hit'></span></div>
+        <div class="content"><strong>效果</strong>
+            <div class="tag">点击:<span id='hit'></span></div>
+            <div class="tag">只读:<span id='hitRd'></span></div>
+            <div class="tag">会话:<span id='session'></span></div>
+            <div class="tag">用户:<span id='user'></span></div>
+            <div class="tag is-success" id='thumbup'></div>
+        </div>
         <hr />
-        <div class="tag">会话:<span id='session'></span></div>
+        <h2 class="subtitle"><strong>方法二</strong></h2>
+        <div class="content">
+            <textarea class="is-size-6" cols="120" rows="12">
+
+            <p class="tag">点击:<span data-counter="hit" data-url="http://www.gitdig.com/post/1"></span></p>
+            <p class="tag">只读:<span data-readonly="true" data-counter="hit" data-url="http://www.gitdig.com/post/2"></span></p>
+            <p class="tag">会话:<span data-counter="session" data-url="http://www.gitdig.com/post/1"></span></p>
+            <p class="tag">用户:<span data-counter="user" data-url="http://www.gitdig.com/post/1"></span></p>
+            <span class="tag is-success" data-counter="thumbup" data-url="http://www.gitdig.com/post/1"></span>
+            <script src="dist/counter.min.js" charset="utf-8"></script>
+            <script defer type="text/javascript">
+                const cnt = counter.New("http://localhost:8080")
+                cnt.Load()
+            </script>
+            </textarea>
+        </div>
         <hr />
-        <div class="tag">用户:<span id='user'></span></div>
+        <div class="content"><strong>效果</strong>
+            <p class="tag">点击:<span data-counter="hit" data-url="http://www.gitdig.com/post/1"></span></p>
+            <p class="tag">只读:<span data-readonly="true" data-counter="hit"
+                    data-url="http://www.gitdig.com/post/2"></span>
+            </p>
+            <p class="tag">会话:<span data-counter="session" data-url="http://www.gitdig.com/post/1"></span></p>
+            <p class="tag">用户:<span data-counter="user" data-url="http://www.gitdig.com/post/1"></span></p>
+            <span class="tag is-success" data-counter="thumbup" data-url="http://www.gitdig.com/post/1"></span>
+        </div>
         <hr />
-        <div id='thumbup'></div>
-        <hr />
-        <div class="notification is-info">点击计数/会话计数/用户计数，请依次测试，同时测试 SQLite 内嵌数据库会发生并发写失败。</div>
+        <div class="notification is-light is-danger"><strong>注意</strong> 点击计数/会话计数/用户计数，开发环境请依次测试，同时测试 SQLite
+            内嵌数据库可能会发生并发写失败。</div>
     </div>
-    <script src="dist/counter.js" charset="utf-8"></script>
+    <script src="dist/counter.min.js" charset="utf-8"></script>
     <script defer type="text/javascript">
         const cnt = counter.New("http://localhost:8080")
-        cnt.Hits({ container: 'hit', url: 'https://github.com/gitdigg/counter/hits', className: 'is-size-7' })
-        // cnt.Sessions({ container: 'session', url: 'https://github.com/gitdigg/counter/sessions', className: 'is-size-7' })
-        // cnt.Users({ container: 'user', url: 'https://github.com/gitdigg/counter/users', className: 'is-size-7' })
+        cnt.Hits({ container: 'hit', url: 'https://github.com/gitdigg/counter/hits' })
+        cnt.Hits({ container: 'hitRd', url: 'https://github.com/gitdigg/counter/hitsRead', readonly: true })
+        cnt.Sessions({ container: 'session', url: 'https://github.com/gitdigg/counter/sessions' })
+        cnt.Users({ container: 'user', url: 'https://github.com/gitdigg/counter/users' })
         cnt.Thumbup({ container: 'thumbup', url: 'https://github.com/gitdigg/counter/thumbup', className: 'tag is-success' })
+        cnt.Load()
     </script>
 </body>
 

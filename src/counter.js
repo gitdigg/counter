@@ -7,22 +7,22 @@ class EntryManager {
         this.baseURL = baseURL
     }
 
-    Hits({ container, url, className }) {
+    Hits({ container, url, readonly }) {
         const dom = document.getElementById(container)
         if (dom != null) {
-            render(<Counter hit url={url} baseURL={this.baseURL} className={className} />, dom)
+            render(<Counter hit url={url} baseURL={this.baseURL} readonly={readonly} />, dom)
         }
     }
-    Sessions({ container, url, className }) {
+    Sessions({ container, url, readonly }) {
         const dom = document.getElementById(container)
         if (dom != null) {
-            render(<Counter session url={url} baseURL={this.baseURL} className={className} />, dom)
+            render(<Counter session url={url} baseURL={this.baseURL} readonly={readonly} />, dom)
         }
     }
-    Users({ container, url, className }) {
+    Users({ container, url, readonly }) {
         const dom = document.getElementById(container)
         if (dom != null) {
-            render(<Counter user url={url} baseURL={this.baseURL} className={className} />, dom)
+            render(<Counter user url={url} baseURL={this.baseURL} readonly={readonly} />, dom)
         }
     }
     Thumbup({ container, url, className }) {
@@ -31,28 +31,42 @@ class EntryManager {
             render(<Thumbup url={url} baseURL={this.baseURL} className={className} />, dom)
         }
     }
+    Load() {
+        const doms = document.querySelectorAll('[data-counter]')
+        doms.forEach(dom => {
+            if (dom.dataset.counter.toLowerCase() === "hits" ||
+                dom.dataset.counter.toLowerCase() === "hit") {
+                if (dom.dataset.readonly === "true") {
+                    render(<Counter readonly hit url={dom.dataset.url} baseURL={this.baseURL} />, dom)
+                } else {
+                    render(<Counter hit url={dom.dataset.url} baseURL={this.baseURL} />, dom)
+                }
+            }
+            if (dom.dataset.counter.toLowerCase() === "session" ||
+                dom.dataset.counter.toLowerCase() === "sessions") {
+                if (dom.dataset.readonly === "true") {
+                    render(<Counter readonly session url={dom.dataset.url} baseURL={this.baseURL} />, dom)
+                } else {
+                    render(<Counter session url={dom.dataset.url} baseURL={this.baseURL} />, dom)
+                }
+            }
+            if (dom.dataset.counter.toLowerCase() === "user" ||
+                dom.dataset.counter.toLowerCase() === "users") {
+                if (dom.dataset.readonly === "true") {
+                    render(<Counter readonly user url={dom.dataset.url} baseURL={this.baseURL} />, dom)
+                } else {
+                    render(<Counter user url={dom.dataset.url} baseURL={this.baseURL} />, dom)
+                }
+            }
+            if (dom.dataset.counter.toLowerCase() === "thumbup" ||
+                dom.dataset.counter.toLowerCase() === "thumbups") {
+                render(<Thumbup url={dom.dataset.url} baseURL={this.baseURL} />, dom)
+            }
+        })
+        console.log("load doms:", doms)
+    }
 }
 
 export function New(baseURL) {
     return new EntryManager(baseURL)
 }
-
-// export function hits({ container, baseURL }) {
-//     const dom = document.getElementById(container);
-//     render(<Counter hit baseURL={baseURL} />, dom)
-// }
-
-// export function sessions({ container, baseURL }) {
-//     const dom = document.getElementById(container);
-//     render(<Counter session baseURL={baseURL} />, dom)
-// }
-
-// export function users({ container, baseURL }) {
-//     const dom = document.getElementById(container);
-//     render(<Counter user baseURL={baseURL} />, dom)
-// }
-
-// export function thumbup({ container, baseURL }) {
-//     const dom = document.getElementById(container);
-//     render(<Thumbup baseURL={baseURL} />, dom)
-// }
